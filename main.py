@@ -11,7 +11,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.geometry(f"{windowSize[0]}x{windowSize[1]}")
-        self.title("Clock")
+        self.title("Stopper")
         self.resizable(False, False)
 
         self.columnconfigure(0, weight=1)
