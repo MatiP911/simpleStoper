@@ -1,7 +1,10 @@
 import customtkinter as ctk
+import keyboard
 
 windowSize = (300, 230)
 stopperFontSize = 100
+startStopButton = 'F5'
+resetButton = 'F6'
 
 
 class App(ctk.CTk):
@@ -22,23 +25,34 @@ class App(ctk.CTk):
         self.clock.bind("<Button-1>", self.resetTime)
         self.clock.grid(row=0, column=0, sticky="nswe")
 
+        self.stopped = False
         self.resetTime()
-        self.time()
+        self.stopperLogic()
+
+        keyboard.add_hotkey(startStopButton, self.stopStart)
+        keyboard.add_hotkey(resetButton, self.resetTime)
 
         self.mainloop()
 
     def resetTime(self, event=None):
         self.timeCount = 0
+        self.textVar.set("00:00")
 
-    def time(self):
+    def stopStart(self):
+        self.stopped = not self.stopped
+
+    def stopperLogic(self):
+        if (self.stopped):
+            self.after(1000, self.stopperLogic)
+            return
+
         self.timeCount += 1
-
         minutes = self.timeCount // 60
         seconds = self.timeCount % 60
         stoperString = f"{minutes:02}:{seconds:02}"
         self.textVar.set(stoperString)
 
-        self.after(1000, self.time)
+        self.after(1000, self.stopperLogic)
 
 
 if __name__ == '__main__':
