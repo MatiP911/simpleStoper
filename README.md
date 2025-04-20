@@ -1,6 +1,6 @@
-# Simple Stopper
+# Simple Stoper
 
-This program is really simple stopper made for measuring time passage inside game events.
+This program is really simple stoper made for measuring time passage inside game events.
 
 ---
 
