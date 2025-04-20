@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import time
 
 
 class App(ctk.CTk):
@@ -13,16 +12,26 @@ class App(ctk.CTk):
 
         self.textVar = ctk.StringVar(value="")
 
-        self.clock = ctk.CTkLabel(self, textvariable=self.textVar)
+        self.clock = ctk.CTkLabel(
+            self, textvariable=self.textVar)
+        self.clock.bind("<Button-1>", self.resetTime)
         self.clock.grid(row=0, column=0, sticky="nswe")
 
+        self.resetTime()
         self.time()
 
         self.mainloop()
 
+    def resetTime(self, event=None):
+        self.timeCount = 0
+
     def time(self):
-        aktualny_czas = time.strftime("%H:%M:%S")
-        self.textVar.set(aktualny_czas)
+        self.timeCount += 1
+
+        minutes = self.timeCount // 60
+        seconds = self.timeCount % 60
+        stoperString = f"{minutes:02}:{seconds:02}"
+        self.textVar.set(stoperString)
 
         self.after(1000, self.time)
 
