@@ -27,11 +27,5 @@ class App(ctk.CTk):
         self.after(1000, self.time)
 
 
-class Clock(ctk.CTkLabel):
-    def __init__(self, parent, text):
-        super().__init__(parent)
-        self.configure(textvariable=text)
-
-
 if __name__ == '__main__':
     App()
