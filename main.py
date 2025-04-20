@@ -25,7 +25,7 @@ class App(ctk.CTk):
         self.clock.bind("<Button-1>", self.resetTime)
         self.clock.grid(row=0, column=0, sticky="nswe")
 
-        self.stopped = False
+        self.stopped = True
         self.resetTime()
         self.stoperLogic()
 
