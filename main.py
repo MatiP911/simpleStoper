@@ -6,12 +6,17 @@ stoperFontSize = 100
 startStopButton = 'F5'
 resetButton = 'F6'
 
+BGCOL = "#2c2c2a"
+TXTMAIN = "#fff3f3"
+TXTSECOND = "#a07cff"
+
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.geometry(f"{windowSize[0]}x{windowSize[1]}")
         self.title("Stoper")
+        self.configure(fg_color=BGCOL)
         self.resizable(False, False)
 
         self.columnconfigure(0, weight=1)
@@ -21,7 +26,7 @@ class App(ctk.CTk):
 
         self.clock = ctk.CTkLabel(
             self, textvariable=self.textVar,
-            font=ctk.CTkFont(size=stoperFontSize))
+            font=ctk.CTkFont(size=stoperFontSize), text_color=TXTMAIN)
         self.clock.bind("<Button-1>", self.resetTime)
         self.clock.grid(row=0, column=0, sticky="nswe")
 
@@ -47,6 +52,12 @@ class App(ctk.CTk):
             return
 
         self.timeCount += 1
+
+        if (self.timeCount % 60 == 0 or self.timeCount % 60 == 30):
+            self.clock.configure(text_color=TXTSECOND)
+        else:
+            self.clock.configure(text_color=TXTMAIN)
+
         minutes = self.timeCount // 60
         seconds = self.timeCount % 60
         stoperString = f"{minutes:02}:{seconds:02}"

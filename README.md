@@ -14,6 +14,12 @@ This program is really simple stoper made for measuring time passage inside game
 
 ---
 
+# Credits
+
+- Color palette [1bit-styx Palette](https://lospec.com/palette-list/1bit-styx)
+
+---
+
 # MIT License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
